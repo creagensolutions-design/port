@@ -77,8 +77,20 @@
         }
 
         .cute-shadow {
-            box-shadow: 0 10px 40px -10px rgba(244, 114, 182, 0.15);
+            box-shadow: 0 10px 40px -10px rgba(244, 114, 182, 0.2);
         }
+
+        /* Floating Animations for Flowers */
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(10deg) scale(1.05); }
+        }
+        @keyframes float-fast {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-15px) rotate(-15deg) scale(1.1); }
+        }
+        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
 
         /* Typewriter Effect */
         .typewriter-text {
@@ -100,10 +112,10 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-pink-200 selection:text-pink-900">
+<body class="antialiased selection:bg-pink-200 selection:text-pink-900 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-pink-50 via-white to-purple-50">
 
     <!-- Navigation -->
-    <nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 transition-all duration-300 bg-white/60 backdrop-blur-xl border border-white/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full">
+    <nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-50 transition-all duration-300 bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(244,114,182,0.15)] rounded-full">
         <div class="px-6 lg:px-8 relative">
             <div class="flex justify-between items-center h-16">
                 <a href="#" class="font-heading font-bold text-xl tracking-tight text-gray-800 hover:text-pink-500 transition-colors">
@@ -140,20 +152,36 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center min-h-[95vh] bg-[url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat bg-fixed">
-        <!-- Lighter Background Overlay so the nature image shines through -->
-        <div class="absolute inset-0 bg-white/10"></div>
+    <section id="about" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center min-h-[95vh] bg-[url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center bg-no-repeat bg-fixed">
+        <!-- Lighter Background Overlay so the nature image shines through but remains soft -->
+        <div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
 
-        <!-- Animated Blobs Background (Reduced opacity further to not clash with image) -->
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <!-- Floating Flowers Overlay -->
+        <div class="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+            <!-- Flower 1 (Top Left) -->
+            <div class="absolute top-[20%] left-[10%] text-5xl opacity-80 animate-float-slow drop-shadow-md">🌸</div>
+            <!-- Flower 2 (Bottom Left) -->
+            <div class="absolute bottom-[20%] left-[8%] text-3xl opacity-60 animate-float-fast drop-shadow-sm">🌺</div>
+            <!-- Flower 3 (Top Right) -->
+            <div class="absolute top-[25%] right-[12%] text-4xl opacity-70 animate-float-fast drop-shadow-md">🌼</div>
+            <!-- Flower 4 (Center Right) -->
+            <div class="absolute top-[60%] right-[8%] text-6xl opacity-50 animate-float-slow drop-shadow-lg">🌸</div>
+            <!-- Flower 5 (Bottom Center) -->
+            <div class="absolute bottom-[10%] left-[45%] text-2xl opacity-70 animate-float-slow drop-shadow-sm">🌷</div>
+            <!-- Flower 6 (Center Left) -->
+            <div class="absolute top-[45%] left-[5%] text-4xl opacity-40 animate-float-fast drop-shadow-md">🌸</div>
+        </div>
 
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full mt-12 md:mt-0">
+        <!-- Animated Blobs Background -->
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30 w-full mt-12 md:mt-0">
             <!-- Glassmorphism Card Wrapper for Hero Content -->
-            <div class="bg-white/40 backdrop-blur-md border border-white/60 shadow-2xl rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center text-center md:text-left relative overflow-hidden">
+            <div class="bg-white/50 backdrop-blur-xl border border-white/70 shadow-2xl rounded-[3rem] p-8 md:p-12 lg:p-16 flex flex-col md:flex-row items-center text-center md:text-left relative overflow-hidden">
                 <!-- Inner subtle glow for the card -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-white/40 to-transparent pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-tr from-pink-100/30 via-transparent to-purple-100/30 pointer-events-none"></div>
 
                 <div class="md:w-3/5 reveal relative z-10">
                     <div class="inline-block px-4 py-1.5 rounded-full bg-white/70 backdrop-blur text-pink-600 font-bold text-sm mb-6 border border-white/80 shadow-sm">
@@ -190,10 +218,10 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" class="py-20 bg-[radial-gradient(#f1f5f9_1.5px,transparent_1.5px)] [background-size:24px_24px] bg-white relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">My Superpowers <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i></h2>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 mb-4">My Superpowers <i class="fa-solid fa-wand-magic-sparkles text-pink-400"></i></h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-pink-400 to-purple-400 mx-auto rounded-full"></div>
             </div>
 
@@ -258,13 +286,14 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 relative">
+    <section id="projects" class="py-20 bg-gradient-to-b from-white to-pink-50/50 relative">
         <!-- Decor element -->
-        <div class="absolute right-0 top-20 w-32 h-32 bg-pink-200 rounded-l-full mix-blend-multiply filter blur-xl opacity-50"></div>
+        <div class="absolute right-0 top-20 w-48 h-48 bg-pink-200 rounded-l-full mix-blend-multiply filter blur-2xl opacity-40"></div>
+        <div class="absolute left-0 bottom-20 w-48 h-48 bg-purple-200 rounded-r-full mix-blend-multiply filter blur-2xl opacity-40"></div>
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Projects <i class="fa-solid fa-rocket text-purple-400"></i></h2>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 mb-4">Featured Projects <i class="fa-solid fa-rocket text-purple-400"></i></h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-pink-400 to-purple-400 mx-auto rounded-full"></div>
             </div>
 
@@ -352,19 +381,19 @@
     </section>
 
     <!-- Experience, Education & Achievements -->
-    <section id="experience" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" class="py-20 bg-white relative overflow-hidden">
+        <!-- Subtle backdrop -->
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-50/50 via-white to-white pointer-events-none"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 
                 <!-- Education Side -->
                 <div class="reveal">
-                    <h2 class="font-heading text-3xl font-bold text-gray-900 mb-8 flex items-center">
+                    <h2 class="font-heading text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-600 mb-8 flex items-center">
                         <i class="fa-solid fa-graduation-cap text-pink-400 mr-3"></i> Education
                     </h2>
-                    <div class="relative border-l-2 border-pink-100 pl-8 space-y-10 ml-4">
-                        
-                        <!-- Edu 1 -->
-                        <div class="relative">
+                    <div class="relative border-l-2 border-pink-200 pl-8 space-y-10 ml-4">
                             <div class="absolute -left-[41px] top-1 w-5 h-5 bg-pink-400 rounded-full border-4 border-white shadow"></div>
                             <span class="text-sm font-bold text-pink-500 mb-1 block">2022 - 2026</span>
                             <h3 class="font-heading text-xl font-bold text-gray-800">B.Tech, Computer Science & Engineering</h3>
